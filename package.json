@@ -1,7 +1,7 @@
 {
   "name": "@lando/plugin-test",
   "description": "The official Lando plugin for plugin-test.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Alec Reynolds @reynoldsalec",
   "license": "GPL-3.0",
   "repository": "lando/plugin-test",
@@ -57,7 +57,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "mocha": "^9.1.2",
     "nyc": "^15.1.0",
-    "version-bump-prompt": "^4.2.1",
+    "version-bump-prompt": "^6.1.0",
     "vuepress": "2.0.0-beta.53"
   },
   "bundledDependencies": [

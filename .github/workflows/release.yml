@@ -39,10 +39,8 @@ jobs:
       # Bump the release in code.
       - name: Bump release
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           yarn run bundle-dependencies update
-          yarn run bump --all --push --version "${{ github.event.release.tag_name }}"
+          yarn run bump --all --push "${{ github.event.release.tag_name }}"
 
       # Deploy
       - name: Publish to npm
