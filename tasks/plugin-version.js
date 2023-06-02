@@ -5,7 +5,8 @@ module.exports = lando => ({
   describe: 'Provides the version of the plugin-test plugin.',
   level: 'app',
   run: () => {
-    var pjson = require('../package.json');
+    const pjson = require('../package.json');
     console.log(pjson.version);
   },
 });
+
