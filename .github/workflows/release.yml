@@ -36,7 +36,16 @@ jobs:
         run: yarn lint
       - name: Run unit tests
         run: yarn test:unit
+      
+      # Bump the release in code.
+      - name: Bump release
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          yarn run bundle-dependencies update
+          yarn run bump --tag --all --push --version "${{ github.event.release.tag_name }}"
 
+      
       # Deploy
       - name: Publish to npm
         run: |
