@@ -39,6 +39,8 @@ jobs:
       # Bump the release in code.
       - name: Bump release
         run: |
+          git config --local user.email "landobot@lando.dev"
+          git config --local user.name ${{ github.event.release.author.login }}
           yarn run bundle-dependencies update
           yarn run bump --all --push "${{ github.event.release.tag_name }}"
 
