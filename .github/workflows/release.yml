@@ -21,6 +21,8 @@ jobs:
       # Install deps and cache
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Install node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -39,12 +41,14 @@ jobs:
       # Bump the release in code.
       - name: Bump release
         run: |
-          git config --local user.email "landobot@lando.dev"
-          git config --local user.name ${{ github.event.release.author.login }}
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git status
           git checkout main
           yarn run bundle-dependencies update
-          yarn run bump --all --push "${{ github.event.release.tag_name }}"
+          yarn run bump "${{ github.event.release.tag_name }}" --commit
+          git tag -f ${{ github.event.release.tag_name }} $(git log --pretty=format:'%h' -n 1)
+          git push origin ${{ github.event.release.tag_name }} 
 
       # Deploy
       - name: Publish to npm
