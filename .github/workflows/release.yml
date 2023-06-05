@@ -47,6 +47,7 @@ jobs:
           git checkout main
           yarn run bundle-dependencies update
           yarn run bump "${{ github.event.release.tag_name }}" --commit
+          git push origin main
           git tag -f ${{ github.event.release.tag_name }} $(git log --pretty=format:'%h' -n 1)
           git push --force origin ${{ github.event.release.tag_name }} 
 
