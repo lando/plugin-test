@@ -48,7 +48,7 @@ jobs:
           yarn run bundle-dependencies update
           yarn run bump "${{ github.event.release.tag_name }}" --commit
           git tag -f ${{ github.event.release.tag_name }} $(git log --pretty=format:'%h' -n 1)
-          git push origin ${{ github.event.release.tag_name }} 
+          git push --force origin ${{ github.event.release.tag_name }} 
 
       # Deploy
       - name: Publish to npm
