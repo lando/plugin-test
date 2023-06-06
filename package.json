@@ -1,7 +1,7 @@
 {
   "name": "@lando/plugin-test",
   "description": "The official Lando plugin for plugin-test.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "author": "Alec Reynolds @reynoldsalec",
   "license": "GPL-3.0",
   "repository": "lando/plugin-test",
