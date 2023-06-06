@@ -38,26 +38,15 @@ jobs:
       - name: Run unit tests
         run: yarn test:unit
 
-      # Deploy
-      - name: Publish latest release to GitHub Packages
-        if: ${{ !github.event.release.prerelease }}
-        run: |
-            npm publish --access public --dry-run
-            npm publish --access public
-            echo "::notice title=Published ${{ github.ref_name }} to @${{ github.repository }}::This is a stable release published to the default 'latest' npm tag"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_DEPLOY_TOKEN }}
-      
       # Bump the release in code.
       - name: Bump release
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git status
-          git checkout main
+          git checkout ${{ github.event.release.target_commitish }}
           yarn run bundle-dependencies update
           yarn run bump "${{ github.event.release.tag_name }}" --commit
-          git push origin main
+          git push origin ${{ github.event.release.target_commitish }}
           git tag -f ${{ github.event.release.tag_name }} $(git log --pretty=format:'%h' -n 1)
           git push --force origin ${{ github.event.release.tag_name }} 
 
