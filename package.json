@@ -58,5 +58,8 @@
     "version-bump-prompt": "^6.1.0",
     "vuepress": "2.0.0-beta.53"
   },
+  "resolutions": {
+    "node-releases": "2.0.44"
+  },
   "bundledDependencies": []
 }
